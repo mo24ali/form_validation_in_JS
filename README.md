@@ -1,0 +1,1 @@
+Quick demonstration on how to use JS to validate HTML forms without using the built-in tools provided by html (using integrated scripts in JS, usign the library ParsleyJS)
