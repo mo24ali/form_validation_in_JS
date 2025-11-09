@@ -1,3 +1,6 @@
+
+<!-- The modern method to validate the form using integrated javascript code based on the RegEx offer more customization   -->
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +15,7 @@
         }
 
         function validateForm() {
-            let name = document.contactForm.name.value.trim();
+            let name = document.contactForm.name.value.trim(); //trim is a function that cut the space from the input
             let email = document.contactForm.email.value.trim();
             let mobile = document.contactForm.mobile.value.trim();
 
@@ -29,7 +32,14 @@
 
             if (email === "") {
                 printError("emailErr", "Please enter your email address");
-            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {/*
+                
+                
+                    / / brakets the define the expression
+                    ^ the start of the expression 
+                    \S+ and non-space character
+                    @ seperate the email
+                */
                 printError("emailErr", "Please enter a valid email address");
             } else {
                 printError("emailErr", "");
@@ -38,7 +48,10 @@
 
             if (mobile === "") {
                 printError("mobileErr", "Please enter your mobile number");
-            } else if (!/^[1-9]\d{9}$/.test(mobile)) {
+            } else if (!/^[1-9]\d{9}$/.test(mobile)) {/*
+                
+                    explanation of the regular expression ^ the start of the regular expression than it start with a number between [1-9] then followed by {9} \d digits=[0-9] and / is the start and the $/ is the end of the expression the .test() is a built*in js function expecially made for the regular functions
+                */
                 printError("mobileErr", "Enter a valid 10-digit number");
             } else {
                 printError("mobileErr", "");
