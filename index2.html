@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>JavaScript Form Validation</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script>
+        function printError(elemId, hintMsg) {
+            document.getElementById(elemId).textContent = hintMsg;
+        }
+
+        function validateForm() {
+            let name = document.contactForm.name.value.trim();
+            let email = document.contactForm.email.value.trim();
+            let mobile = document.contactForm.mobile.value.trim();
+
+            let nameErr = emailErr = mobileErr = true;
+
+            if (name === "") {
+                printError("nameErr", "Please enter your name");
+            } else if (!/^[a-zA-Z\s]+$/.test(name)) {
+                printError("nameErr", "Name can contain only letters and spaces");
+            } else {
+                printError("nameErr", "");
+                nameErr = false;
+            }
+
+            if (email === "") {
+                printError("emailErr", "Please enter your email address");
+            } else if (!/^\S+@\S+\.\S+$/.test(email)) {
+                printError("emailErr", "Please enter a valid email address");
+            } else {
+                printError("emailErr", "");
+                emailErr = false;
+            }
+
+            if (mobile === "") {
+                printError("mobileErr", "Please enter your mobile number");
+            } else if (!/^[1-9]\d{9}$/.test(mobile)) {
+                printError("mobileErr", "Enter a valid 10-digit number");
+            } else {
+                printError("mobileErr", "");
+                mobileErr = false;
+            }
+
+            if (nameErr || emailErr || mobileErr) return false;
+
+            let dataPreview =
+                `You've entered:\nFull Name: ${name}\nEmail: ${email}\nMobile: ${mobile}`;
+            alert(dataPreview);
+            return true;
+        }
+    </script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex items-center justify-center">
+
+    <form name="contactForm" onsubmit="return validateForm()" class="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+
+        <h2 class="text-2xl font-bold text-center mb-4">Contact Form</h2>
+
+        <div class="mb-4">
+            <label class="block font-semibold">Full Name</label>
+            <input class="border rounded-md p-2 w-full focus:ring-2 focus:ring-blue-400" type="text" name="name"
+                placeholder="John Doe">
+            <small class="text-red-500" id="nameErr"></small>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold">Email Address</label>
+            <input class="border rounded-md p-2 w-full focus:ring-2 focus:ring-blue-400" type="text" name="email"
+                placeholder="example@email.com">
+            <small class="text-red-500" id="emailErr"></small>
+        </div>
+
+        <div class="mb-4">
+            <label class="block font-semibold">Mobile Number</label>
+            <input class="border rounded-md p-2 w-full focus:ring-2 focus:ring-blue-400" type="text" name="mobile"
+                maxlength="10" placeholder="10-digit number">
+            <small class="text-red-500" id="mobileErr"></small>
+        </div>
+
+        <button type="submit"
+            class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 w-full rounded-md transition">
+            Submit
+        </button>
+    </form>
+
+</body>
+
+</html>
